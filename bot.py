@@ -138,19 +138,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     for keyword, response in responses.items():
         if keyword.lower() in text:
-            if message.reply_to_message:
-               await context.bot.send_message(
-    chat_id=message.chat.id,
-    text=response,
-    reply_to_message_id=message.reply_to_message.message_id,
-    disable_web_page_preview=True
-)
-
-            else:
-                await message.reply_text(
-                    response,
-                    disable_web_page_preview=True
-                )
+            # التعديل هنا: الرد على المستخدم الحالي بدلاً من الرسالة الأصلية
+            await message.reply_text(
+                response,
+                disable_web_page_preview=True
+            )
             return
 
 # --- إضافة رد (نظام المحادثة) ---
@@ -523,7 +515,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await send_admin_notification(context, update.effective_user)
     
     start_message = [
-        "مرحبًا! 👋 أنا بوت الخطوط التلقائي.",
+        "مرحبًا! 👋 أنا بوت الردود التلقائي.",
         "",
         "🎯 كيفية الاستخدام:",
         "- عندما يتم ذكر أي كلمة مسجلة، سأقوم بالرد تلقائياً",
