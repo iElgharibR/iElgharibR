@@ -596,3 +596,6 @@ if __name__ == "__main__":
         save_users({"users": {}})
     
     main()
+    from time import sleep
+while True:
+    sleep(10)
